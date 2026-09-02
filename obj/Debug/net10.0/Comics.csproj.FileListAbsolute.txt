@@ -1,0 +1,14 @@
+C:\Users\erikw\Documents\Testes\Comics\obj\Debug\net10.0\Comics.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\erikw\Documents\Testes\Comics\obj\Debug\net10.0\Comics.AssemblyInfoInputs.cache
+C:\Users\erikw\Documents\Testes\Comics\obj\Debug\net10.0\Comics.AssemblyInfo.cs
+C:\Users\erikw\Documents\Testes\Comics\obj\Debug\net10.0\Comics.csproj.CoreCompileInputs.cache
+C:\Users\erikw\Documents\Testes\Comics\bin\Debug\net10.0\Comics.exe
+C:\Users\erikw\Documents\Testes\Comics\bin\Debug\net10.0\Comics.deps.json
+C:\Users\erikw\Documents\Testes\Comics\bin\Debug\net10.0\Comics.runtimeconfig.json
+C:\Users\erikw\Documents\Testes\Comics\bin\Debug\net10.0\Comics.dll
+C:\Users\erikw\Documents\Testes\Comics\bin\Debug\net10.0\Comics.pdb
+C:\Users\erikw\Documents\Testes\Comics\obj\Debug\net10.0\Comics.dll
+C:\Users\erikw\Documents\Testes\Comics\obj\Debug\net10.0\refint\Comics.dll
+C:\Users\erikw\Documents\Testes\Comics\obj\Debug\net10.0\Comics.pdb
+C:\Users\erikw\Documents\Testes\Comics\obj\Debug\net10.0\Comics.genruntimeconfig.cache
+C:\Users\erikw\Documents\Testes\Comics\obj\Debug\net10.0\ref\Comics.dll
