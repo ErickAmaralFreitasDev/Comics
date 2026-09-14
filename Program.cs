@@ -1,54 +1,92 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Comics;
 
-namespace Comics
+namespace JimmyLinq
 {
-    class Comic
+    static class ComicAnalyzer
     {
-        public string Name {get; set;}
-        public int Issue {get; set;}
-
-        public override string ToString() => $"{Name} (Issue #{Issue})";
-
-        public static readonly IEnumerable<Comic> Catalog = new List<Comic>
+        private static PriceRange CalculatePriceRange(Comic comic)
         {
-            new Comic {Name = "Johnny America vs. The Pinko", Issue = 6},
-            new Comic {Name = "Rock'n Roll (limited edition)", Issue = 19},
-            new Comic {Name = "Woman's Work", Issue = 36},
-            new Comic {Name = "Hippie Madness (misprinted)", Issue = 57},
-            new Comic {Name = "Revenge of the New Wave Freak (damaged)", Issue = 68},
-            new Comic {Name = "Black Monday", Issue = 74},
-            new Comic {Name = "Tribal Tattoo Madness", Issue = 83},
-            new Comic {Name = "The Death of the Object", Issue = 97},
-        };
+            if (Comic.Prices[comic.Issue] < 100M)
+            {
+                return PriceRange.Cheap;
+            }
+            else
+            {
+                return PriceRange.Expensive;
+            }
+        }
 
-        public static readonly IReadOnlyDictionary<int, decimal> Prices = new Dictionary<int, decimal>
+        public static IEnumerable<IGrouping<PriceRange, Comic>> GroupComicsByPrice(IEnumerable<Comic> comics, IReadOnlyDictionary<int, decimal> prices)
         {
-            [6] = 360M,
-            [19] = 500M,
-            [36] = 650M,
-            [57] = 13525M,
-            [68] = 250M,
-            [74] = 75M,
-            [83] = 25.75M,
-            [97] = 35.25M
-        };
+            IEnumerable<IGrouping<PriceRange, Comic>> grouped =
+                from comic in comics
+                orderby prices[comic.Issue] ascending
+                group comic by CalculatePriceRange(comic) into priceGroup
+                select priceGroup;
+            return grouped;
+        }
+
+        public static IEnumerable<string> GetReviews(IEnumerable<Comic> comics, IEnumerable<Review> reviews)
+        {
+            var join =
+                from comic in comics
+                orderby comic.Issue 
+                join review in reviews on comic.Issue equals review.Issue
+                select $"{review.Critic} rated #{comic.Issue} '{comic.Name}' with score {review.Score}";
+            return join;
+        }
+
+
     }
 
     class Program
     {
         static void Main(string[] args)
         {
-            IEnumerable<Comic> mostExpensive = 
-                from comic in Comic.Catalog
-                where Comic.Prices[comic.Issue] > 500
-                orderby Comic.Prices[comic.Issue] descending
-                select comic;
-
-            foreach (Comic comic in mostExpensive)
+            var done = false;
+            while (!done)
             {
-                Console.WriteLine($"{comic} costs {Comic.Prices[comic.Issue]:C}");
+                Console.WriteLine("\nPress G to group comics by price, R to get reviews, any other key to exit.\n");
+                switch (Console.ReadKey(true).KeyChar.ToString().ToUpper())
+                {
+                    case "G":
+                        done = GroupComicsByPrice();
+                        break;
+                    case "R":
+                        done = GetReviews();
+                        break;
+                    default:
+                        done = true;
+                        break;
+                }
             }
+        }
+
+        private static bool GroupComicsByPrice()
+        {
+            var groups = ComicAnalyzer.GroupComicsByPrice(Comic.Catalog, Comic.Prices);
+                foreach (var group in groups)
+                {
+                    Console.WriteLine($"{group.Key} comics:");
+                    foreach (var comic in group)
+                    {
+                        Console.WriteLine($"#{comic.Issue} '{comic.Name}' costs {Comic.Prices[comic.Issue]:C}");
+                    }
+                }
+                return false;
+        }
+
+        private static bool GetReviews()
+        {
+            var reviews = ComicAnalyzer.GetReviews(Comic.Catalog, Comic.Reviews);
+            foreach (var review in reviews)
+            {
+                Console.WriteLine(review);
+            }
+            return false;
         }
     }
 }
+
