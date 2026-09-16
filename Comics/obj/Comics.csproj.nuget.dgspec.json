@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\erikw\\Documents\\Testes\\Comics\\Comics.csproj": {}
+    "C:\\Users\\erikw\\Documents\\Testes\\Comics\\Comics\\Comics.csproj": {}
   },
   "projects": {
-    "C:\\Users\\erikw\\Documents\\Testes\\Comics\\Comics.csproj": {
+    "C:\\Users\\erikw\\Documents\\Testes\\Comics\\Comics\\Comics.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\erikw\\Documents\\Testes\\Comics\\Comics.csproj",
+        "projectUniqueName": "C:\\Users\\erikw\\Documents\\Testes\\Comics\\Comics\\Comics.csproj",
         "projectName": "Comics",
-        "projectPath": "C:\\Users\\erikw\\Documents\\Testes\\Comics\\Comics.csproj",
+        "projectPath": "C:\\Users\\erikw\\Documents\\Testes\\Comics\\Comics\\Comics.csproj",
         "packagesPath": "C:\\Users\\erikw\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\erikw\\Documents\\Testes\\Comics\\obj\\",
+        "outputPath": "C:\\Users\\erikw\\Documents\\Testes\\Comics\\Comics\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
